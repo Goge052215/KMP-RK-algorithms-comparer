@@ -1,0 +1,3 @@
+/Users/goge/CLionProjects/alg_test/cmake-build-debug/CMakeFiles/alg_test.dir
+/Users/goge/CLionProjects/alg_test/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/goge/CLionProjects/alg_test/cmake-build-debug/CMakeFiles/rebuild_cache.dir
