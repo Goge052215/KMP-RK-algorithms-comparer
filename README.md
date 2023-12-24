@@ -1,4 +1,4 @@
-# KMP-RK-Comparer:
+# KMP-RK algorithms Comparer:
 ## Introduction:
 This is a simple program that helps test the running time of the KMP and RK algorithms processing the same string text.
 
