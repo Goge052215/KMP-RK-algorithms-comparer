@@ -17,11 +17,11 @@ void rand_string(std::string& str, size_t size, std::string pattern) {
     const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     if (size) {
         --size;  // reserve space for '\0'
+        str = std::string(size, '\0');  // create the string with the required size
         for (size_t n = 0; n < size; n++) {
             int key = rand() % (sizeof charset - 1);
             str[n] = charset[key];
         }
-        str[size] = '\0';
     }
 
     // Insert pattern at a random position
@@ -56,7 +56,7 @@ void search(std::string pattern, std::string text, int primeNum) {
     int h = 1;
 
     // The value of h would be "pow(d, M-1)%q"
-    for (i = 0; i < patternLength - 1; i++)
+    for (auto i = 0; i < patternLength - 1; i++)
         h = (h * NUM_CHARS) % primeNum;
 
     // Calculate the hash value of pattern and first window of text
@@ -160,24 +160,10 @@ void computeLPSArray(std::string pattern, std::vector<int>& lps) {
     }
 }
 
-/*
-void ask_exit() {
-    char response;
-
-    std::cout << "Do you want to exit the code? (press any key to continue): ";
-    std::cin >> response;
-
-    if(response == 'Y' || response == 'y') {
-        std::cout << "Exiting the code...\n";
-        exit(0);
-    }
-}
-*/
-
 double measure_execution_time(void (*func)(std::string, std::string, int), std::string pattern, std::string text, int primeNum) {
-    auto start = std::chrono::high_resolution_clock::now();
+    auto start = std::chrono::steady_clock::now();
     func(pattern, text, primeNum);
-    auto end = std::chrono::high_resolution_clock::now();
+    auto end = std::chrono::steady_clock::now();
     std::chrono::duration<double> elapsed = end - start;
 
     return elapsed.count();
@@ -224,8 +210,6 @@ int main() {
 
     std::cout << "\n";
     std::cout << "RK average time: " << rk_avg << " seconds, KMP average time: " << kmp_avg << " seconds\n";
-
-    // ask_exit(); check the results in .exe file
 
     return 0;
 }
